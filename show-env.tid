@@ -1,6 +1,6 @@
 caption: Show ENV
 created: 20201221132044870
-modified: 20201221143511950
+modified: 20201221164625715
 tags: 
 title: $:/plugins/rimir/froma/show-env
 tocp.froma-p-parent.ref: root
@@ -57,7 +57,11 @@ type: text/vnd.tiddlywiki
 
 <$button>
 <$action-deletetiddler $tiddler=<<wf:activeState>>/>
-Delete State
+Delete Froma State
+</$button>
+<$button>
+<$action-deletetiddler $tiddler=<<froma:activeDataElementStateName>>/>
+Delete Active Element
 </$button>
 <$button>
 <<froma:a:initViewIfNotExist>>
@@ -67,11 +71,3 @@ Load State!
 </$wikify>
 </$wikify>
 </$set>
-<hr>
-
-Active FROMA Data: <<froma:getActiveDataElement>>
-<$select tiddler='$:/state/rimir/froma/active-data'>
-<$list filter="[tag[froma-proto-data:person]][tag[froma-proto-data:scope]]">
-<option value=<<currentTiddler>>><<rimir:name>></option>
-</$list>
-</$select>
