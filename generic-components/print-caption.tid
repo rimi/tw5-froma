@@ -1,0 +1,9 @@
+caption: Generic Component: Print Caption
+created: 20201221143916742
+modified: 20201221154121940
+tags: 
+title: $:/plugins/rimir/froma/generic-components/print-caption
+tocp.froma-p-parent.ref: #:/p/froma/#:/generic-components
+type: text/vnd.tiddlywiki
+
+<$wikify name="wf:activeDataElement" text="<<froma:activeDataElement>>"><$tiddler tiddler=<<wf:activeDataElement>>><div class="froma-caption"><<rimir:name>></div></$tiddler></$wikify>
