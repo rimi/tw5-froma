@@ -1,0 +1,16 @@
+caption: Structure: 6 - Simple Wrapped
+created: 20201221145326512
+modified: 20201221150606343
+tags: 
+title: $:/plugins/rimir/froma/displays/6-stages/structures/simple-wrapped
+tocp.froma-p-parent.ref: #:/p/froma/#:/displays/6-stages/structures
+type: text/vnd.tiddlywiki
+
+<div class="froma-wrapper">
+  <div class="froma-stage-logo"><<froma:component "logo">></div>
+  <div class="froma-stage-main"><<froma:component "main">></div>
+  <div class="froma-stage-nav"><<froma:component "nav">></div>
+  <div class="froma-stage-outline"><<froma:component "outline">></div>
+  <div class="froma-stage-menu"><<froma:component "menu">></div>
+  <div class="froma-stage-detail"><<froma:component "detail">></div>
+</div>

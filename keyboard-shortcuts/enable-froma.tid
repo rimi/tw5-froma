@@ -1,0 +1,10 @@
+caption: Keyboard: Enable Froma
+created: 20201220182938214
+key: alt-3
+modified: 20201221132620636
+tags: $:/tags/KeyboardShortcut
+title: $:/plugins/rimir/froma/keyboard-shortcuts/enable-froma
+tocp.froma-p-parent.ref: #:/p/froma/#:/keyboard-shortcuts
+type: text/vnd.tiddlywiki
+
+<$action-setfield $tiddler="$:/config/ActivePageTemplate" text="$:/plugins/rimir/froma/renderer"/>

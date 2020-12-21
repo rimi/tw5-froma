@@ -1,0 +1,44 @@
+caption: Style: Default
+created: 20201221150156809
+modified: 20201221150604513
+tags: 
+title: $:/plugins/rimir/froma/displays/6-stages/styles/default
+tocp.froma-p-parent.ref: #:/p/froma/#:/displays/6-stages/styles
+type: text/vnd.tiddlywiki
+
+.froma-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+  grid-auto-rows: minmax(100px, auto);
+}
+.froma-stage-logo {
+  grid-column: 1;
+  grid-row: 1 / 2;
+	border: 5px solid yellow;
+}
+.froma-stage-main {
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+	border: 5px solid red;
+}
+.froma-stage-nav {
+  grid-column: 1;
+  grid-row: 2 / 5;
+	border: 5px solid green;
+}
+.froma-stage-outline {
+  grid-column: 2;
+  grid-row: 3 / 5;
+	border: 5px solid blue;
+}
+.froma-stage-menu {
+  grid-column: 3;
+  grid-row: 3 / 4;
+	border: 5px solid brown;
+}
+.froma-stage-detail {
+  grid-column: 3;
+  grid-row: 4;
+	border: 5px solid black;
+}

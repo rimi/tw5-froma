@@ -1,0 +1,77 @@
+caption: Show ENV
+created: 20201221132044870
+modified: 20201221143511950
+tags: 
+title: $:/plugins/rimir/froma/show-env
+tocp.froma-p-parent.ref: root
+type: text/vnd.tiddlywiki
+
+\import $:/plugins/rimir/froma/macros/general
+
+!!Current Froma-Config:
+
+<$set name="tv-wikilinks" value="no">
+<$wikify name="wf:activeDataElement" text=<<froma:activeDataElement>>>
+<$wikify name="wf:activeState" text=<<froma:activeState>>>
+
+
+|!Name |!Value |!Description |
+|!State (dynamic)|<|<|
+|State|<<froma:activeState>>|The active state (and also prefix) needed to define the current view|
+|Active Data-Element|<<froma:activeDataElement>>|The currently active data-element|
+|!Config (static)|<|<|
+|Active Data State|<<froma:activeDataElementStateName>>|Name of the tiddler that stores the current active data-element|
+|State Prefix|<<froma:statePrefix>>|Prefix for ALL Froma-State-Infos (set it to "$:/state/..." to have it clientside-only)|
+|!Internal Calculations (dynamic)|<|<|
+|Tiddler-Config|<$macrocall $name="froma:INT:config4Tiddler" tiddler=<<wf:activeDataElement>>/>|Tiddler-specific config for selected data-element|
+|Tag-Config|<$macrocall $name="froma:INT:config4AnyTag" tiddler=<<wf:activeDataElement>>/>|Tag-specific config for selected data-element|
+
+<$list filter="[<wf:activeState>is[tiddler]]">
+<h2>Current Stage Configuration according to Active-State:</h2>
+<table>
+<tr><th>Name</th><th>Field</th><th>Component</th></tr>
+<$list filter="[<wf:activeState>fields[]prefix[froma.stage.]]" variable="c:stageConfigFieldName">
+<$list filter="[<c:stageConfigFieldName>removeprefix[froma.stage.]removesuffix[.ref]]" variable="c:stageName">
+<tr><td><<c:stageName>></td><td><<c:stageConfigFieldName>></td><td>{{{[<wf:activeState>get<c:stageConfigFieldName>]}}}</td></tr>
+</$list>
+</$list>
+<tr><th>Config</th><th>Field</th><th>Component</th></tr>
+<tr><td>Display</td><td>froma.display.ref</td><td>{{{[<wf:activeState>get[froma.display.ref]]}}}</td></tr>
+<tr><td>Active Structure</td><td>froma.structure.ref</td><td>{{{[<wf:activeState>get[froma.structure.ref]]}}}</td></tr>
+<tr><td>Active Display-Style</td><td>froma.display-style.ref</td><td>{{{[<wf:activeState>get[froma.display-style.ref]]}}}</td></tr>
+<tr><td>Add. Styles</td><td>froma.add-style.refs</td><td>{{{[<wf:activeState>get[froma.add-style.refs]]}}}</td></tr>
+</table>
+</$list>
+
+<h2>Config-Fields:</h2>
+<table>
+<tr><th>Name</th><th>Description</th></tr>
+<tr><th>froma.config.tiddler.ref</th><td>Title of the tiddler this config is intented for</td></tr>
+<tr><th>froma.config.tag.ref</th><td>Title of the tag this config is intented for</td></tr>
+<tr><th>froma.display.ref</th><td>Title of the display to use</td></tr>
+<tr><th>froma.stage.//&lt;stage-name&gt;//.ref</th><td>Title of the component used to render the stage named //&lt;stage-name&gt;//</td></tr>
+<tr><th>froma.default-display-style.ref</th><td>The initially selected Style/View-State</td></tr>
+<tr><th>froma.add-style.refs</th><td>Additional CSS</td></tr>
+<tr><th></th><td></td></tr>
+</table>
+
+<$button>
+<$action-deletetiddler $tiddler=<<wf:activeState>>/>
+Delete State
+</$button>
+<$button>
+<<froma:a:initViewIfNotExist>>
+Load State!
+</$button>
+
+</$wikify>
+</$wikify>
+</$set>
+<hr>
+
+Active FROMA Data: <<froma:getActiveDataElement>>
+<$select tiddler='$:/state/rimir/froma/active-data'>
+<$list filter="[tag[froma-proto-data:person]][tag[froma-proto-data:scope]]">
+<option value=<<currentTiddler>>><<rimir:name>></option>
+</$list>
+</$select>

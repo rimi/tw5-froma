@@ -1,0 +1,9 @@
+caption: Composition: 3 - Default
+created: 20201221065247949
+froma.available-style.refs: $:/plugins/rimir/froma/displays/3-stages/styles/dev
+froma.structure.ref: $:/plugins/rimir/froma/displays/3-stages/structures/simple-wrapped
+modified: 20201221151001986
+tags: 
+title: $:/plugins/rimir/froma/displays/3-stages/compositions/default
+tocp.froma-p-parent.ref: #:/p/froma/#:/displays/3-stages/compositions
+type: text/vnd.tiddlywiki

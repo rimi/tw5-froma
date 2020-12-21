@@ -1,0 +1,21 @@
+caption: Froma-Renderer
+created: 20201220182559885
+modified: 20201221140332013
+tags: 
+title: $:/plugins/rimir/froma/renderer
+tocp.froma-p-parent.ref: root
+type: text/vnd.tiddlywiki
+
+\import $:/plugins/rimir/froma/macros/general
+
+<$wikify name="wf:activeState" text=<<froma:activeState>>>
+<$tiddler tiddler=<<wf:activeState>>>
+<style>
+<$transclude tiddler={{!!froma.display-style.ref}}/>
+<$list filter="[enlist{!!froma.add-style.refs}]">
+<$transclude tiddler=<<currentTiddler>>/>
+</$list>
+</style>
+<$transclude tiddler={{!!froma.structure.ref}}/>
+</$tiddler>
+</$wikify>

@@ -1,0 +1,81 @@
+caption: Froma Macros
+created: 20201221062947661
+modified: 20201221142321270
+tags: 
+title: $:/plugins/rimir/froma/macros/general
+tocp.froma-p-parent.ref: #:/p/froma/#:/macros
+type: text/vnd.tiddlywiki
+
+\define froma:defaultDisplay() $:/plugins/rimir/froma/displays/3-stages/compositions/default
+
+\define froma:activeDataElementStateName() $:/state/rimir/froma/active-data
+
+\define froma:statePrefix() $:/state/rimir/froma/configs
+
+\define froma:activeDataElement() <$transclude tiddler=<<froma:activeDataElementStateName>>/>
+
+\define froma:activeState() <<froma:statePrefix>>/<<froma:activeDataElement>>
+
+\define froma:a:initViewIfNotExist()
+<$wikify name="wf:state" text=<<froma:activeState>>>
+<$list filter="[<wf:state>!is[tiddler]]">
+<$wikify name="wf:activeDataElement" text=<<froma:activeDataElement>>>
+<$wikify name="wf:config4Tiddler" text="""<$macrocall $name="froma:INT:config4Tiddler" tiddler=<<wf:activeDataElement>>/>""">
+<$wikify name="wf:config4AnyTag" text="""<$macrocall $name="froma:INT:config4AnyTag" tiddler=<<wf:activeDataElement>>/>""">
+
+<$macrocall $name="froma:INT_a:initStateWithDefaults" state=<<wf:state>>/>
+
+<$macrocall $name="froma:INT_a:transferConfigToState" config=<<wf:config4AnyTag>> state=<<wf:state>>/>
+
+<$macrocall $name="froma:INT_a:transferConfigToState" config=<<wf:config4Tiddler>> state=<<wf:state>>/>
+
+</$wikify>
+</$wikify>
+</$wikify>
+</$list>
+</$wikify>
+\end
+
+\define froma:INT_a:initStateWithDefaults(state)
+<$list filter="menu nav main logo outline detail" variable="stage">
+<$action-setfield $tiddler="$state$" $field={{{[<stage>addprefix[froma.stage.]addsuffix[.ref]]}}} $value="TODO:PLACEHOLDER"/>
+</$list>
+\end
+
+\define froma:INT_a:transferConfigToState(config, state)
+<$list filter="[[$config$]fields[]prefix[froma.stage.]]" variable="c:stageConfigFieldName">
+<$list filter="[<c:stageConfigFieldName>removeprefix[froma.stage.]removesuffix[.ref]]" variable="c:stageName">
+<$action-setfield $tiddler="$state$" $field=<<c:stageConfigFieldName>> $value={{{[[$config$]get<c:stageConfigFieldName>]}}}/>
+</$list>
+</$list>
+
+<$list filter="[[$config$]has[froma.display.ref]]">
+<$action-setfield $tiddler="$state$" $field="froma.display.ref" $value={{{[[$config$]get[froma.display.ref]]}}}/>
+<$action-setfield $tiddler="$state$" $field="froma.structure.ref" $value={{{[[$config$]get[froma.display.ref]get[froma.structure.ref]]}}}/>
+<$list filter="[[$config$]has[froma.default-display-style.ref]]" emptyMessage="""<$action-setfield $tiddler="$state$" $field="froma.display-style.ref" $value={{{[[$config$]get[froma.display.ref]get[froma.available-style.refs]splitter[]first[]]}}}/>""">
+<$action-setfield $tiddler="$state$" $field="froma.display-style.ref" $value={{{[[$config$]get[froma.default-display-style.ref]]}}}/>
+</$list>
+</$list>
+
+<$list filter="[[$config$]has[froma.add-style.refs]]">
+<$action-setfield $tiddler="$state$" $field="froma.add-style.refs" $value={{{[[$config$]get[froma.add-style.refs]]}}}/>
+</$list>
+\end
+
+\define froma:INT:config4Tiddler(tiddler) <$list filter="[tag[froma:config]froma.config.tiddler.ref[$tiddler$]]"><<currentTiddler>></$list>
+
+\define froma:INT:config4AnyTag(tiddler) <$list filter="[[$tiddler$]tags[]]" variable="theTag"><$list filter="[tag[froma:config]froma.config.tag.ref<theTag>]"><<currentTiddler>></$list></$list>
+
+\define froma:component(name) 
+<$wikify name="wf:activeState" text=<<froma:activeState>>>
+<$wikify name="wf:stageFieldName" text="froma.stage.$name$.ref">
+<$transclude tiddler={{{[<wf:activeState>get<wf:stageFieldName>]}}}/>
+</$wikify>
+</$wikify>
+\end
+
+|! Name |! Desc |
+|`<<froma:activeDataElement>>`|The title of the currently active data-element (e.g. a specific person)|
+|`<<froma:activeState>>`|The title of the current active-data's state|
+|`<<froma:component name:??>>`|The content of the stage called `name`|
+|!INT(ERNAL) | |

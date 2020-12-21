@@ -1,0 +1,13 @@
+caption: Structure: 3 - Simple wrapped
+created: 20201221064119001
+modified: 20201221150441366
+tags: 
+title: $:/plugins/rimir/froma/displays/3-stages/structures/simple-wrapped
+tocp.froma-p-parent.ref: #:/p/froma/#:/displays/3-stages/structures
+type: text/vnd.tiddlywiki
+
+<div class="froma-wrapper">
+  <div class="froma-stage-menu"><<froma:component "menu">></div>
+  <div class="froma-stage-nav"><<froma:component "nav">></div>
+  <div class="froma-stage-main"><<froma:component "main">></div>
+</div>

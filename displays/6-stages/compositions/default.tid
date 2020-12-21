@@ -1,0 +1,9 @@
+caption: Composition: 6 - Default
+created: 20201221150832108
+froma.available-style.refs: $:/plugins/rimir/froma/displays/6-stages/styles/default $:/plugins/rimir/froma/displays/6-stages/styles/main-maximized
+froma.structure.ref: $:/plugins/rimir/froma/displays/6-stages/structures/simple-wrapped
+modified: 20201221150945403
+tags: 
+title: $:/plugins/rimir/froma/displays/6-stages/compositions/default
+tocp.froma-p-parent.ref: #:/p/froma/#:/displays/6-stages/compositions
+type: text/vnd.tiddlywiki
